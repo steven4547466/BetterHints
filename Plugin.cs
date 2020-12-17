@@ -28,19 +28,19 @@ namespace BetterHints
         public Handlers.Server server { get; set; }
 
         public override void OnEnabled()
-		{
-			base.OnEnabled();
+        {
+	        base.OnEnabled();
             Instance = this;
             RegisterEvents();
             HarmonyInstance = new Harmony($"steven4547466.betterhints-{++harmonyPatches}");
             HarmonyInstance.PatchAll();
         }
 
-		public override void OnDisabled()
-		{
-			base.OnDisabled();
+        public override void OnDisabled()
+        {
+	        base.OnDisabled();
             UnregisterEvents();
-			HarmonyInstance.UnpatchAll();
+	        HarmonyInstance.UnpatchAll();
             Instance = null;
         }
 
@@ -68,5 +68,5 @@ namespace BetterHints
             player = null;
             server = null;
         }
-	}
+    }
 }
