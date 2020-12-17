@@ -57,7 +57,7 @@ namespace BetterHints
         }
 
         public void UnregisterEvents()
-		{
+        {
             EPlayer.Joined -= player.OnJoined;
             EPlayer.Left -= player.OnLeft;
             EPlayer.Died -= player.OnDied;
