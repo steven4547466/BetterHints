@@ -63,12 +63,6 @@ namespace BetterHints
 			NetworkServer.SendToClientOfPlayer<HintMessage>(player.HintDisplay.netIdentity, new HintMessage(new TextHint(message, parameters, null, duration)));
 		}
 
-		//public static void SortHints(this Player player)
-		//{
-		//	if (!QueuedHints.ContainsKey(player.Id)) return;
-		//	QueuedHints[player.Id].Sort((h1, h2) => (h2.Priority + h2.QueuedAt).CompareTo(h1.Priority + h1.QueuedAt));
-		//}
-
 		/// <summary>
 		/// Adds a hint into the proper place in the list provided.
 		/// </summary>
@@ -78,7 +72,11 @@ namespace BetterHints
 		{
 			if (hints.Count == 0) hints.Add(hint);
 			else if (hint.Priority == int.MaxValue) hints.Insert(0, hint);
-			else if (hint.Priority == int.MinValue) hints.Add(hint);
+			else if (hint.Priority == int.MinValue)
+			{
+				hint.OverrideHint = false;
+				hints.Add(hint);
+			}
 			else
 			{
 				if (hints.Count == 1)
@@ -96,12 +94,14 @@ namespace BetterHints
 				{
 					for (int i = 0; i < hints.Count; i++)
 					{
-						if (hints[i].Priority < hint.Priority)
+						if (hints[i].Priority < hint.Priority || (hints[i].Priority == hint.Priority && hint.OverrideHint))
 						{
+							if (i != 0) hint.OverrideHint = false;
 							hints.Insert(i, hint);
 							return;
 						}
 					}
+					hint.OverrideHint = false;
 					hints.Add(hint);
 				}
 			}

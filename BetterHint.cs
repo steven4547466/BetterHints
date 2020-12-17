@@ -26,8 +26,9 @@ namespace BetterHints
 		/// <summary>
 		/// Whether or not this hint will override the currently shown hint.
 		/// Only works if the priority is higher or equal to the currently shown hint.
+		/// This will also put it to the front of the queue for equal priority hints.
 		/// </summary>
-		public bool OverrideHint { get; private set; }
+		public bool OverrideHint { get; set; }
 
 		/// <summary>
 		/// Whether or not this hint will be removed from the queue or cleared on death.
