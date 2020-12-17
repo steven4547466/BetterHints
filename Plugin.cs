@@ -29,7 +29,7 @@ namespace BetterHints
 
         public override void OnEnabled()
         {
-	        base.OnEnabled();
+            base.OnEnabled();
             Instance = this;
             RegisterEvents();
             HarmonyInstance = new Harmony($"steven4547466.betterhints-{++harmonyPatches}");
@@ -38,9 +38,9 @@ namespace BetterHints
 
         public override void OnDisabled()
         {
-	        base.OnDisabled();
+            base.OnDisabled();
             UnregisterEvents();
-	        HarmonyInstance.UnpatchAll();
+            HarmonyInstance.UnpatchAll();
             Instance = null;
         }
 
